@@ -21,7 +21,7 @@ async def command_start_handler(msg: Message) -> None:
     greeting = (
         f'Привет, {user_full_name}!\n\n'
         f'Здесь ты можешь написать что угодно, и это увидит @{BOT_OWNER_NICKNAME}.\n\n'
-        'Таким образом, ты можешь анонимно связатсья с этим человеком.'
+        'Таким образом, ты можешь анонимно связаться с этим человеком.'
     )
 
     await msg.answer(greeting)
