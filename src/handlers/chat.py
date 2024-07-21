@@ -35,7 +35,12 @@ async def user_message_handler(msg: Message) -> None:
     )
 
 
-@router.message(lambda event: event.from_user.id == BOT_OWNER_ID)
+@router.message(lambda event: all(
+    (
+        event.from_user.id == BOT_OWNER_ID,
+        not event.text.startswith('/')
+    )
+))
 async def admin_message_handler(msg: Message) -> None:
     try:
         if latest_user := await dp.storage.get_data('latest_user'):
