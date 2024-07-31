@@ -38,7 +38,7 @@ async def user_message_handler(msg: Message) -> None:
 @router.message(lambda event: all(
     (
         event.from_user.id == BOT_OWNER_ID,
-        event.text and not event.text.startswith('/')
+        not event.text.startswith('/') if event.text else True
     )
 ))
 async def admin_message_handler(msg: Message) -> None:
