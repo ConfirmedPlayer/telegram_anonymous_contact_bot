@@ -3,7 +3,7 @@ import sys
 
 from aiogram import html
 from aiogram.filters import CommandStart
-from aiogram.types import Message
+from aiogram.types import ErrorEvent, Message
 from loguru import logger
 
 from config import bot, dp
@@ -27,9 +27,17 @@ async def command_start_handler(msg: Message) -> None:
     await msg.answer(greeting)
 
 
+@dp.error()
+async def telegram_error_handler(event: ErrorEvent) -> None:
+    logger.exception(f'New exception by telegram error handler: {event.exception}')
+    await bot.send_message(
+        chat_id=BOT_OWNER_ID,
+        text=f'Ошибка!\n\n{event.exception}'
+    )
+
+
 async def main() -> None:
     dp.include_routers(*routers)
-
     await dp.start_polling(bot)
 
 
