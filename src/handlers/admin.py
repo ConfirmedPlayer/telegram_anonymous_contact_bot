@@ -24,5 +24,5 @@ async def set_chat_command_handler(msg: Message, state: FSMContext) -> None:
 @router.message(SetChatStates.chat_id)
 async def set_chat_state_handler(msg: Message, state: FSMContext) -> None:
     await dp.storage.set_data('chat_id', {'id': int(msg.text)})
-    await msg.answer(f'Диалог установлен с пользователем: {msg.text}')
     await state.clear()
+    await msg.answer(f'Диалог установлен с пользователем: {msg.text}')
