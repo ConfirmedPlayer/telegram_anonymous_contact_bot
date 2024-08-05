@@ -1,15 +1,5 @@
-import os
-from importlib import import_module
+from .admin import router as admin_router
+from .chat import router as chat_router
 
 
-routers = []
-
-current_path = os.path.dirname(__file__)
-
-for module in os.listdir(current_path):
-    if not module.startswith('_'):
-        module = module.replace('.py', '')
-        router = import_module(f'.{module}', 'handlers').router
-        routers.append(router)
-
-__all__ = ('routers',)
+__all__ = ('admin_router', 'chat_router')

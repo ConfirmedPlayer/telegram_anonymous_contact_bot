@@ -8,7 +8,7 @@ from loguru import logger
 
 from config import bot, dp
 from constants import BOT_OWNER_ID, BOT_OWNER_NICKNAME
-from handlers import routers
+from handlers import admin_router, chat_router
 
 
 @dp.message(CommandStart())
@@ -37,7 +37,7 @@ async def telegram_error_handler(event: ErrorEvent) -> None:
 
 
 async def main() -> None:
-    dp.include_routers(*routers)
+    dp.include_routers(admin_router, chat_router)
     await dp.start_polling(bot)
 
 
