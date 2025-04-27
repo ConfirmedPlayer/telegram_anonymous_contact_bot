@@ -1,18 +1,11 @@
-[tool.poetry]
+[project]
 name = "telegram-anonymous-contact-bot"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "Ready to use, simple asynchronous Telegram bot that you can use to receive messages from anonymous Telegram users."
 readme = "README.md"
-package-mode = false
-
-[tool.poetry.dependencies]
-python = "^3.10"
-aiogram = "^3.8.0"
-python-dotenv = "^1.0.1"
-loguru = "^0.7.2"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires-python = ">=3.13"
+dependencies = [
+    "aiogram>=3.20.0.post0",
+    "loguru>=0.7.3",
+    "python-dotenv>=1.1.0"
+]
