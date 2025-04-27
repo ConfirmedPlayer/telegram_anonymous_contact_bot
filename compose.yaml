@@ -1,0 +1,15 @@
+services:
+  telegram-anonymous-contact-bot:
+    image: telegram-anonymous-contact-bot
+    volumes:
+      - ./src:/app
+    restart: always
+    build:
+      context: .
+    env_file:
+        - .env
+    command:
+      - "sh"
+      - "-c"
+      - |
+        python ./src/main.py
