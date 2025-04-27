@@ -6,7 +6,6 @@ from config import dp
 from filters import AdminCommandFilter
 from states import SetChatStates
 
-
 router = Router(name=__name__)
 
 
@@ -18,7 +17,9 @@ async def ping_command_handler(msg: Message) -> None:
 @router.message(AdminCommandFilter('/set_chat'))
 async def set_chat_command_handler(msg: Message, state: FSMContext) -> None:
     await state.set_state(SetChatStates.chat_id)
-    await msg.answer('Скопируйте и отправьте айди пользователя, с кем хотите поговорить.')
+    await msg.answer(
+        'Скопируйте и отправьте айди пользователя, с кем хотите поговорить.'
+    )
 
 
 @router.message(SetChatStates.chat_id)

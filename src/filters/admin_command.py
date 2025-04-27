@@ -5,7 +5,9 @@ from constants import BOT_OWNER_ID
 
 
 class AdminCommandFilter(Filter):
-    def __init__(self, command: str, admin_user_id: int = BOT_OWNER_ID) -> None:
+    def __init__(
+        self, command: str, admin_user_id: int = BOT_OWNER_ID
+    ) -> None:
         self.command = command
         self.admin_user_id = admin_user_id
 

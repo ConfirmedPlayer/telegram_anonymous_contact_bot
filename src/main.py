@@ -14,7 +14,9 @@ from handlers import admin_router, chat_router
 @dp.message(CommandStart())
 async def command_start_handler(msg: Message) -> None:
     if msg.from_user.id == BOT_OWNER_ID:
-        await msg.answer('Вы админ этого бота. Скоро будете получать сообщения!')
+        await msg.answer(
+            'Вы админ этого бота. Скоро будете получать сообщения!'
+        )
         return
 
     user_full_name = html.bold(msg.from_user.full_name)
@@ -29,10 +31,11 @@ async def command_start_handler(msg: Message) -> None:
 
 @dp.error()
 async def telegram_error_handler(event: ErrorEvent) -> None:
-    logger.exception(f'New exception by telegram error handler: {event.exception}')
+    logger.exception(
+        f'New exception by telegram error handler: {event.exception}'
+    )
     await bot.send_message(
-        chat_id=BOT_OWNER_ID,
-        text=f'Ошибка!\n\n{event.exception}'
+        chat_id=BOT_OWNER_ID, text=f'Ошибка!\n\n{event.exception}'
     )
 
 
@@ -45,5 +48,5 @@ if __name__ == '__main__':
     logger.add(sink='logs.log', level='INFO')
     try:
         asyncio.run(main())
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt, SystemExit):
         sys.exit(0)
